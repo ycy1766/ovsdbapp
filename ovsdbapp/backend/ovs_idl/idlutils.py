@@ -482,3 +482,17 @@ def frozen_row(row):
         uuid=row.uuid,
         **{col: getattr(row, col)
            for col in row._table.columns if hasattr(row, col)})
+
+
+def table_has_column(idl_, table, column):
+    """Check if a column exists in a specific table of the IDL schema.
+
+    :param _idl: The Idl instance
+    :type _idl: ovs.db.idl.Idl
+    :param table: The name of the table to check
+    :type table: str
+    :param column: The name of the column to check for
+    :type column: str
+    :return: True if the column exists in the table, False otherwise
+    """
+    return table in idl_.tables and column in idl_.tables[table].columns
